@@ -9,18 +9,20 @@
 #include <string>
 
 using namespace std;
-int main()
+int main() // the code was generally cleaned up after suggestions from the code review
 {
     string location = "start";
     string choice = "";
+    int map = 0;
+    int gas = 0;
+    int health = 3;
+    int saw = 0;
     while (choice != "q" && choice != "Q")
     {
-        
-        
-        
+       
         if (location == "start") // beginning starting position
         {
-            cout << "You are in the middle of a forest. \n You see a trail to your north. The trail runs east to west. \n";
+            cout << "You are in the middle of a forest. You see a trail to the north. The trail runs east to west. You want to go home. \n";
             cout << ">";
             cin >> choice;
             if (choice == "north") // if player chooses this, they go to the beginning of the trail (trail)
@@ -48,14 +50,19 @@ int main()
         
         
         
-        else if (location == "southcliff") // here, they are sent back to the start of the game
+        else if (location == "southcliff") // here, they find a saw which they will need to cut apart the tree on 40A
         {
-            cout << "You headed south. You encounter a cliff. \n";
+            saw = 1;
+            cout << "You headed south. You found and picked up a saw. \n";
             cout << ">";
             cin >> choice;
             if (choice == "north")
             {
                 location = "start";
+            }
+            else if (choice == "south")
+            {
+                health = 0; // they fell off the cliff
             }
             else if (choice != "q" || choice != "Q")
             {
@@ -76,6 +83,10 @@ int main()
             {
                 location = "start";
             }
+            else if (choice == "east")
+            {
+                health = 0; // they fell off the cliff
+            }
             else if (choice != "q" || choice != "Q")
             {
                 cout << "That is irrelevant. \n";
@@ -94,6 +105,10 @@ int main()
             {
                 location = "start";
             }
+            else if (choice == "west")
+            {
+                health = 0; // they fell off the cliff
+            }
             else if (choice != "q" || choice != "Q")
             {
                 cout << "That is irrelevant. \n";
@@ -105,7 +120,8 @@ int main()
         
         else if (location == "trail") // they are at the beginning of the trail. if they go west, they should be at trailblazer 42 and if they go east they should be at trailblazer 41. 41 should fork into A and B.
         {
-            cout << "You are at the beginning of the trail. You may either go east or west. \n";
+            cout << "You are at the beginning of the trail. \n";
+            cout << ">";
             cin >> choice;
             if (choice == "east")
             {
@@ -114,6 +130,15 @@ int main()
             else if (choice == "west")
             {
                 location = "trailblazer42";
+            }
+            else if (choice == "south")
+            {
+                location = "start";
+            }
+            else if (choice == "north")
+            {
+                cout << "Watch your step. \n";
+                health = 0;
             }
             else if (choice != "q" || choice != "Q")
             {
@@ -168,14 +193,21 @@ int main()
             
                 
              
-        else if (location == "blockedtrail") // They cannot pass here. They need get a map to find an alternate route
+        else if (location == "blockedtrail") // They cannot pass here unless they have a saw. They need to noget a map to find an alternate route
         {
-            cout << "You have come across a tree in your way. As of now, you do not know of a way to get around it. Where would you like to go? \n";
-            cout << ">";
-            cin >> choice;
-            if (choice == "west")
+            if (saw == 0)
             {
-                location = "trailblazer40A";
+                cout << "You have come across a tree in your way. As of now, you do not know of a way to get around it. Where would you like to go? \n";
+                cout << ">";
+                cin >> choice;
+                if (choice == "west")
+                {
+                    location = "trailblazer40A";
+                }
+            }
+            else if (saw == 1)
+            {
+                location = "parkinglot";
             }
             else if (choice != "q" || choice != "Q")
             {
@@ -183,7 +215,34 @@ int main()
             }
         }
            
-                
+        
+        
+        else if (location == "parkinglot") // Once they find the saw, they will be able to cut apart the debris at blockedtrail and arrive here
+        {
+            cout << "You cut the tree out of your way and you see a car! Would you like to investigate it? \n";
+            cout << ">";
+            cin >> choice;
+            if (choice == "yes")
+            {
+                location = "car";
+            }
+            else if (choice == "no")
+            {
+                cout << "Would you like to go west?";
+                if (choice == "yes")
+                {
+                    location = "blockedtrail";
+                }
+                else if (choice == "no")
+                {
+                    location = "parkinglot";
+                }
+            }
+            else if (choice != "q" || choice != "Q")
+            {
+                cout << "That is irrelevant. \n";
+            }
+        }
         
                 
         else if (location == "trailblazer42") // if the player goes west from the start of the trail, they come here and they should pick up a map here
@@ -193,17 +252,19 @@ int main()
             cin >> choice;
             if (choice == "approach")
             {
-                cout << "The man gave you a map. He left. \n";
+                map = 1;
+                cout << "You now have a map. After reading it, you realize that there is a parking lot past Trailblazer 40A. It also indicates that there is a saw somewhere that looks familiar. \n";
                 cout << ">";
                 cin >> choice;
                 if (choice == "east")
                 {
                     location = "trail";
                 }
-            }
-            else if (choice == "east")
-            {
-                location = "trail";
+                else if (choice == "west")
+                {
+                    cout << "Now you know where the bears live. \n";
+                    health = 0;
+                }
             }
             else if (choice != "q" || choice != "Q")
             {
@@ -265,12 +326,17 @@ int main()
             cin >> choice;
             if (choice == "grab")
             {
+                gas = 1;
                 cout << "You grabbed the gasoline. The fire is closing in on you on all sides except for the west. Where would you like to go? \n";
                 cout << ">";
                 cin >> choice;
                     if (choice == "west")
                     {
                         location = "trailblazer40B";
+                    }
+                    else if (choice != "west")
+                    {
+                        health = 0;
                     }
             }
             else if (choice == "west")
@@ -283,9 +349,36 @@ int main()
             }
         }
     
-         
-                
-                
+
+        
+        else if (location == "car")
+        {
+            cout << "Would you like to try and start the car? \n";
+            cout << ">";
+            cin >> choice;
+            if (choice == "yes" && gas == 0)
+            {
+                cout << "Unless you have gas for the car, you cannot start it. \n";
+            }
+            else if (choice == "yes" && gas == 1)
+            {
+                cout << "\n \n Congratulations! You have started the car and are free to go home. You have made it out of the forest without dying. \n";
+                return 0;
+            }
+        }
+        
+        
+        if (health == 0) // when the player reaches 0 health, they die
+        {
+            cout << "Be careful. You were killed due to your actions. \n";
+            return 0;
+        }
+        
+        
+        
+        
+    
+        
         }
     return 0;
 }
