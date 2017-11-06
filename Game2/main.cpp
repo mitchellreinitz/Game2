@@ -5,6 +5,7 @@
 //  Created by Mitchell Reinitz on 10/2/17.
 //  Copyright © 2017 Mitchell Reinitz. All rights reserved.
 //
+// 2 SUGGESTIONS: I was only given the one suggestion of cleaning up my code in general. I cleaned up my code by making it neater and putting it into a logical sequence.
 #include <iostream>
 #include <string>
 
@@ -19,8 +20,8 @@ int main() // the code was generally cleaned up after suggestions from the code 
     int saw = 0;
     while (choice != "q" && choice != "Q")
     {
-       
-        if (location == "start") // beginning starting position
+        
+        if (location == "start") // This is where the player spawns
         {
             cout << "You are in the middle of a forest. You see a trail to the north. The trail runs east to west. You want to go home. \n";
             cout << ">";
@@ -41,7 +42,7 @@ int main() // the code was generally cleaned up after suggestions from the code 
             {
                 location = "eastcliff";
             }
-            else if (choice != "q" || choice != "Q")
+            else if (choice != "q" || choice != "Q" || choice != "?")
             {
                 cout << "That is irrelevant. \n";
             }
@@ -50,7 +51,7 @@ int main() // the code was generally cleaned up after suggestions from the code 
         
         
         
-        else if (location == "southcliff") // here, they find a saw which they will need to cut apart the tree on 40A
+        else if (location == "southcliff") // here, they get a saw which they will need to cut apart the tree on 40A
         {
             saw = 1;
             cout << "You headed south. You found and picked up a saw. \n";
@@ -64,7 +65,7 @@ int main() // the code was generally cleaned up after suggestions from the code 
             {
                 health = 0; // they fell off the cliff
             }
-            else if (choice != "q" || choice != "Q")
+            else if (choice != "q" || choice != "Q" || choice != "?")
             {
                 cout << "That is irrelevant. \n";
             }
@@ -87,7 +88,7 @@ int main() // the code was generally cleaned up after suggestions from the code 
             {
                 health = 0; // they fell off the cliff
             }
-            else if (choice != "q" || choice != "Q")
+            else if (choice != "q" || choice != "Q" || choice != "?")
             {
                 cout << "That is irrelevant. \n";
             }
@@ -109,7 +110,7 @@ int main() // the code was generally cleaned up after suggestions from the code 
             {
                 health = 0; // they fell off the cliff
             }
-            else if (choice != "q" || choice != "Q")
+            else if (choice != "q" || choice != "Q" || choice != "?")
             {
                 cout << "That is irrelevant. \n";
             }
@@ -140,7 +141,7 @@ int main() // the code was generally cleaned up after suggestions from the code 
                 cout << "Watch your step. \n";
                 health = 0;
             }
-            else if (choice != "q" || choice != "Q")
+            else if (choice != "q" || choice != "Q" || choice != "?")
             {
                 cout << "That is irrelevant. \n";
             }
@@ -162,7 +163,7 @@ int main() // the code was generally cleaned up after suggestions from the code 
             {
                 location = "field";
             }
-            else if (choice != "q" || choice != "Q")
+            else if (choice != "q" || choice != "Q" || choice != "?")
             {
                 cout << "That is irrelevant. \n";
             }
@@ -184,7 +185,7 @@ int main() // the code was generally cleaned up after suggestions from the code 
             {
                 location = "trailblazer41";
             }
-            else if (choice != "q" || choice != "Q")
+            else if (choice != "q" || choice != "Q" || choice != "?")
             {
                 cout << "That is irrelevant. \n";
             }
@@ -209,7 +210,7 @@ int main() // the code was generally cleaned up after suggestions from the code 
             {
                 location = "parkinglot";
             }
-            else if (choice != "q" || choice != "Q")
+            else if (choice != "q" || choice != "Q" || choice != "?")
             {
                 cout << "That is irrelevant. \n";
             }
@@ -238,7 +239,7 @@ int main() // the code was generally cleaned up after suggestions from the code 
                     location = "parkinglot";
                 }
             }
-            else if (choice != "q" || choice != "Q")
+            else if (choice != "q" || choice != "Q" || choice != "?")
             {
                 cout << "That is irrelevant. \n";
             }
@@ -253,7 +254,7 @@ int main() // the code was generally cleaned up after suggestions from the code 
             if (choice == "approach")
             {
                 map = 1;
-                cout << "You now have a map. After reading it, you realize that there is a parking lot past Trailblazer 40A. It also indicates that there is a saw somewhere that looks familiar. \n";
+                cout << "You now have a map. After reading it, you realize that there is a parking lot past Trailblazer 40A. It also indicates that there is a saw somewhere that looks familiar. \n"; // this "place that looks familiar" is southcliff. They pick it up when they walk over it. They don't need the map to win. 
                 cout << ">";
                 cin >> choice;
                 if (choice == "east")
@@ -266,7 +267,7 @@ int main() // the code was generally cleaned up after suggestions from the code 
                     health = 0;
                 }
             }
-            else if (choice != "q" || choice != "Q")
+            else if (choice != "q" || choice != "Q" || choice != "?")
             {
                 cout << "That is irrelevant. \n";
             }
@@ -288,7 +289,7 @@ int main() // the code was generally cleaned up after suggestions from the code 
             {
                 location = "fork";
             }
-            else if (choice != "q" || choice != "Q")
+            else if (choice != "q" || choice != "Q" || choice != "?")
             {
                 cout << "That is irrelevant. \n";
             }
@@ -310,7 +311,7 @@ int main() // the code was generally cleaned up after suggestions from the code 
             {
                 location = "trailblazer40B";
             }
-            else if (choice != "q" || choice != "Q")
+            else if (choice != "q" || choice != "Q" || choice != "?")
             {
                 cout << "That is irrelevant. \n";
             }
@@ -343,7 +344,7 @@ int main() // the code was generally cleaned up after suggestions from the code 
             {
                 location = "trailblazer40B";
             }
-            else if (choice != "q" || choice != "Q")
+            else if (choice != "q" || choice != "Q" || choice != "?")
             {
                 cout << "That is irrelevant. \n";
             }
@@ -351,7 +352,7 @@ int main() // the code was generally cleaned up after suggestions from the code 
     
 
         
-        else if (location == "car")
+        else if (location == "car") // They can only drive home if they have picked up the gasoline from the southcliff
         {
             cout << "Would you like to try and start the car? \n";
             cout << ">";
@@ -365,6 +366,10 @@ int main() // the code was generally cleaned up after suggestions from the code 
                 cout << "\n \n Congratulations! You have started the car and are free to go home. You have made it out of the forest without dying. \n";
                 return 0;
             }
+            else if (choice != "q" || choice != "Q" || choice != "?")
+            {
+                cout << "That is irrelevant. \n";
+            }
         }
         
         
@@ -375,8 +380,11 @@ int main() // the code was generally cleaned up after suggestions from the code 
         }
         
         
-        
-        
+     
+       else if (choice == "?") // These are instructions. When the user types '?' then it will display these instructions. It does not work yet
+        {
+            cout << "\n \n \nTO GO EAST, TYPE 'east' \nTO GO NORTH, TYPE 'north' \nTO GO SOUTH, TYPE 'south' \nTO GO WEST, TYPE 'west'\n \n \n";
+        }
     
         
         }
